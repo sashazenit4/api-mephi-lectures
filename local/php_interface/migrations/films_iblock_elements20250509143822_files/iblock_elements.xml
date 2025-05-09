@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items iblockUid="Flims:films" exchangeVersion="2" >
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>100</value>
+ </field>
+ <field name="NAME">
+  <value>Дюна: Часть вторая</value>
+ </field>
+ <field name="PREVIEW_PICTURE">
+  <value name="dune2.jpg" type="file">iblock/b7f/ei54u1384e0j8oa3eiifqi25fs7pknrh.jpg</value>
+ </field>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE">
+  <value name="dune2.jpg" type="file">iblock/b7f/ei54u1384e0j8oa3eiifqi25fs7pknrh.jpg</value>
+ </field>
+ <field name="DETAIL_TEXT">
+  <value>Герцог Пол Атрейдес присоединяется ĸ фрименам, чтобы стать&#13;
+Муад'Дибом, одновременно пытаясь остановить наступление войны</value>
+ </field>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE">
+  <value>dune2</value>
+ </field>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>33</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="GENRES">
+  <value>fiction</value>
+  <value>drama</value>
+ </property>
+ <property name="YEAR">
+  <value>2024</value>
+ </property>
+ <property name="RATING">
+  <value>8.4</value>
+ </property>
+ <property name="NAME_EN">
+  <value>Dune: Part Two</value>
+ </property>
+ <property name="DIRECTOR">
+  <value><![CDATA["Дени Вильнёв]]></value>
+ </property>
+ <property name="SCREEN_WRITER">
+  <value><![CDATA["Дени Вильнёв]]></value>
+ </property>
+ <property name="COUNTRY">
+  <value>США</value>
+ </property>
+ <property name="ACTORS">
+  <value>Тимоти Шаламе</value>
+  <value>Зендая</value>
+  <value>Ребеĸĸа Фергюсон</value>
+  <value>Хавьер Бардем</value>
+  <value>Остин Батлер</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>Оппенгеймер</value>
+ </field>
+ <field name="PREVIEW_PICTURE">
+  <value name="bobby.jpg" type="file">iblock/0c6/ddlmheigav697q6hrt753960m1xyqjcy.jpg</value>
+ </field>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE">
+  <value name="bobby.jpg" type="file">iblock/0c6/ddlmheigav697q6hrt753960m1xyqjcy.jpg</value>
+ </field>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE">
+  <value>bobby</value>
+ </field>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>34</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="GENRES">
+  <value>drama</value>
+  <value>thrillers</value>
+ </property>
+ <property name="YEAR">
+  <value>2023</value>
+ </property>
+ <property name="RATING">
+  <value>8.1</value>
+ </property>
+ <property name="NAME_EN"/>
+ <property name="DIRECTOR"/>
+ <property name="SCREEN_WRITER"/>
+ <property name="COUNTRY"/>
+ <property name="ACTORS"/>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>Барби</value>
+ </field>
+ <field name="PREVIEW_PICTURE">
+  <value name="barbie.jpg" type="file">iblock/b8d/kr5853rybb1tkrofvf2jropjvv901zy5.jpg</value>
+ </field>
+ <field name="PREVIEW_TEXT"/>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE">
+  <value name="barbie.jpg" type="file">iblock/b8d/kr5853rybb1tkrofvf2jropjvv901zy5.jpg</value>
+ </field>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE">
+  <value>barbie</value>
+ </field>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>35</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="GENRES">
+  <value>cartoon</value>
+  <value>fiction</value>
+ </property>
+ <property name="YEAR">
+  <value>2023</value>
+ </property>
+ <property name="RATING">
+  <value>7.0</value>
+ </property>
+ <property name="NAME_EN"/>
+ <property name="DIRECTOR"/>
+ <property name="SCREEN_WRITER"/>
+ <property name="COUNTRY"/>
+ <property name="ACTORS"/>
+</item>
+
+</items>

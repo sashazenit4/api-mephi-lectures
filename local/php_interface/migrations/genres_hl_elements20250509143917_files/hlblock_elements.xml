@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items hlblockUid="Genres" exchangeVersion="2" >
+<item>
+ <field name="UF_NAME">
+  <value>Драмы</value>
+ </field>
+ <field name="UF_SORT">
+  <value>100</value>
+ </field>
+ <field name="UF_XML_ID">
+  <value>drama</value>
+ </field>
+ <field name="UF_DEF"/>
+ <field name="UF_FILE">
+  <value name="free-icon-drama-4424580.png" type="file">uf/26c/kipw7cm712yu2fi9akidmj3db9vze8n1.png</value>
+ </field>
+</item>
+<item>
+ <field name="UF_NAME">
+  <value>Фантастиĸа</value>
+ </field>
+ <field name="UF_SORT">
+  <value>100</value>
+ </field>
+ <field name="UF_XML_ID">
+  <value>fiction</value>
+ </field>
+ <field name="UF_DEF"/>
+ <field name="UF_FILE">
+  <value name="free-icon-sci-fi-2267551.png" type="file">uf/1e0/45bofp0ieetccku13ief71hau327ikno.png</value>
+ </field>
+</item>
+<item>
+ <field name="UF_NAME">
+  <value>Арт-хаус</value>
+ </field>
+ <field name="UF_SORT">
+  <value>300</value>
+ </field>
+ <field name="UF_XML_ID">
+  <value>art-house</value>
+ </field>
+ <field name="UF_DEF"/>
+ <field name="UF_FILE">
+  <value name="free-icon-poop-1642952.png" type="file">uf/7b1/f3r4pjutau37tq1jg68nw2tzguxhyzia.png</value>
+ </field>
+</item>
+<item>
+ <field name="UF_NAME">
+  <value>Анимация</value>
+ </field>
+ <field name="UF_SORT">
+  <value>400</value>
+ </field>
+ <field name="UF_XML_ID">
+  <value>cartoon</value>
+ </field>
+ <field name="UF_DEF"/>
+ <field name="UF_FILE">
+  <value name="free-icon-donatello-1507122.png" type="file">uf/9a9/remgy789xmp1d377l3x6x5ywt1uyv0re.png</value>
+ </field>
+</item>
+<item>
+ <field name="UF_NAME">
+  <value>Триллеры</value>
+ </field>
+ <field name="UF_SORT">
+  <value>500</value>
+ </field>
+ <field name="UF_XML_ID">
+  <value>thrillers</value>
+ </field>
+ <field name="UF_DEF"/>
+ <field name="UF_FILE">
+  <value name="free-icon-thriller-1710259.png" type="file">uf/2e0/44i2yaot0oqggbk2t4i3t94c0bp2kffr.png</value>
+ </field>
+</item>
+
+</items>
