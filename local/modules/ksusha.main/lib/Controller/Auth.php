@@ -1,10 +1,11 @@
 <?php
 namespace Ksusha\Main\Controller;
 
-use Bitrix\Main\Engine\Controller as BitrixContoller;
+use Bitrix\Main\Engine\Controller as BitrixController;
 use Bitrix\Main\Error;
+use Bitrix\Main\Context;
 
-class Auth extends BitrixContoller
+class Auth extends BitrixController
 {
     public function configureActions(): array
     {
@@ -12,24 +13,29 @@ class Auth extends BitrixContoller
             'login' => [
                 'prefilters' => [],
                 'postfilters' => [],
-            ]
+            ],
         ];
     }
 
     public function loginAction(): array
     {
-        $authorization = $this->request->getHeader('authorization');
-        $authorization = explode(' ', $authorization);
-        $authorization = base64_decode($authorization[1]);
-        $login = explode(':', $authorization)[0];
-        $password = explode(':', $authorization)[1];
-        $userName = $login;
-        $userPassword = $password;
+        $request = Context::getCurrent()->getRequest();
+
+        $login = trim($request->getPost('login'));
+        $password = $request->getPost('password');
+
+        if (empty($login) || empty($password)) {
+            $this->addError(new Error('Логин и пароль обязательны'));
+            return [];
+        }
 
         $user = new \CUser;
-        $authResult = $user->Login($userName, $userPassword);
+
+        $authResult = $user->Login($login, $password, 'N');
+
         if ($authResult === true) {
-            $userEntity = \CUser::GetByLogin($userName)->Fetch();
+            $userEntity = \CUser::GetByLogin($login)->Fetch();
+
             return [
                 'name' => $userEntity['NAME'],
                 'token' => $userEntity['UF_TOKEN'],
