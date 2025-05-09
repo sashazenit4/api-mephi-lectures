@@ -2,6 +2,7 @@
 namespace Ksusha\Main\Controller;
 
 use Bitrix\Main\Engine\Controller as BitrixContoller;
+use Bitrix\Main\Error;
 
 class Auth extends BitrixContoller
 {
@@ -26,21 +27,18 @@ class Auth extends BitrixContoller
         $userPassword = $password;
 
         $user = new \CUser;
-        if ($user->Login($userName, $userPassword)){
+        $authResult = $user->Login($userName, $userPassword);
+        if ($authResult === true) {
             $userEntity = \CUser::GetByLogin($userName)->Fetch();
             return [
-                'status' => true,
                 'name' => $userEntity['NAME'],
                 'token' => $userEntity['UF_TOKEN'],
                 'role' => $userEntity['UF_ROLE'],
+                'password' => $userPassword,
             ];
         } else {
-            return [
-                'status' => false,
-                'error_messages' => [
-                    'Неправильный логин или пароль',
-                ],
-            ];
+            $this->addError(new Error('Неправильный логин или пароль'));
+            return [];
         }
     }
 }
