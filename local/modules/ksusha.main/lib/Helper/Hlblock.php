@@ -15,7 +15,7 @@ class Hlblock
      * @throws ObjectPropertyException
      * @throws SystemException
      */
-    public static function getGenresInfoByIds(array $elementIds): array
+    public static function getGenresInfoByIds(array $elementIds, array $params = []): array
     {
         $genresHlBlock = HL\HighloadBlockTable::getList([
             'filter' => [
@@ -25,11 +25,16 @@ class Hlblock
         $genresEntity = HL\HighloadBlockTable::compileEntity($genresHlBlock);
         $genresEntityClass = $genresEntity->getDataClass();
 
-        return $genresEntityClass::getList([
-            'filter' => [
-                'ID' => $elementIds,
-            ],
-        ])->fetchAll();
+        $queryParams = [];
+        if (!empty($elementIds)) {
+            $queryParams = [
+                'filter' => [
+                    'ID' => $elementIds,
+                ],
+            ];
+        }
+
+        return $genresEntityClass::getList(array_merge($queryParams, $params))->fetchAll();
     }
 
     /**
