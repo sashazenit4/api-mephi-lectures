@@ -34,7 +34,6 @@ class Auth extends BitrixContoller
                 'name' => $userEntity['NAME'],
                 'token' => $userEntity['UF_TOKEN'],
                 'role' => $userEntity['UF_ROLE'],
-                'password' => $userPassword,
             ];
         } else {
             $this->addError(new Error('Неправильный логин или пароль'));
