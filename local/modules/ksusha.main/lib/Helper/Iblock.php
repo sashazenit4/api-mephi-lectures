@@ -4,6 +4,7 @@ namespace Ksusha\Main\Helper;
 use Bitrix\Iblock\Elements\ElementMoviesTable;
 use Bitrix\Main\Application;
 use Bitrix\Main\ArgumentException;
+use Bitrix\Main\Diag\Debug;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
 
@@ -22,10 +23,12 @@ class Iblock
         if (!class_exists($className)) {
             return [];
         }
+        $filter = [];
+        if (!empty($moviesIds)) {
+            $filter['ID'] = $moviesIds;
+        }
         $rawMovies = $className::getList([
-            'filter' => [
-                'ID' => $moviesIds,
-            ],
+            'filter' => $filter,
             'select' => [
                 '*',
                 'YEAR',
