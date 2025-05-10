@@ -14,4 +14,5 @@ return function (RoutingConfigurator $routes) {
     $routes->get('/user', [UserController::class, 'getUser']);
     $routes->get('/genres', [GenresController::class, 'getGenres']);
     $routes->get('/movies', [MoviesController::class, 'getMovies']);
+    $routes->get('/movies/{movieId}', [MoviesController::class, 'getMovie']);
 };

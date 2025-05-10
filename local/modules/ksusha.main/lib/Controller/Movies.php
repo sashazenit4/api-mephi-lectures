@@ -17,7 +17,11 @@ class Movies extends BitrixContoller
             'getMovies' => [
                 'prefilters' => [],
                 'postfilters' => [],
-            ]
+            ],
+            'getMovie' => [
+                'prefilters' => [],
+                'postfilters' => [],
+            ],
         ];
     }
 
@@ -31,5 +35,18 @@ class Movies extends BitrixContoller
     {
         Loader::includeModule('iblock');
         return Iblock::getMoviesInfoByIdsBriefly([]);
+    }
+
+    /**
+     * @throws LoaderException
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
+    public function getMovieAction(): array
+    {
+        $elementId = $this->request->get('movieId');
+        Loader::includeModule('iblock');
+        return Iblock::getMovieByIdDetailed($elementId);
     }
 }
