@@ -3,6 +3,7 @@
 namespace Ksusha\Main\Helper;
 
 use Bitrix\Iblock\Elements\ElementMoviesTable;
+use Bitrix\Main\Diag\Debug;
 use Bitrix\Main\Application;
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\ObjectPropertyException;
@@ -13,6 +14,7 @@ class Iblock
 {
     private const MOVIES_IBLOCK_API_CODE = 'films';
     private const REVIEWS_IBLOCK_API_CODE = 'reviews';
+    private const MAIN_PAGE_IBLOCK_API_CODE = 'mainPage';
 
     /**
      * @throws ObjectPropertyException
@@ -199,5 +201,45 @@ class Iblock
         }
 
         return $reviews;
+    }
+
+    public static function getMoinPageBlocks(): array
+    {
+        $className = sprintf('\Bitrix\Iblock\Elements\Element%sTable', self::MAIN_PAGE_IBLOCK_API_CODE);
+        if (!class_exists($className)) {
+            return [];
+        }
+        $rawMainPageBlocks = $className::getList([
+            'select' => [
+                'ID',
+                'NAME',
+                'ACTIVE_FROM',
+                'PREVIEW_TEXT',
+                'CATEGORY',
+                'PREVIEW_PICTURE',
+                'BUTTON_TEXT',
+            ],
+            'order' => [
+                'ID' => 'ASC',
+            ],
+        ])->fetchCollection();
+        $mainPageBlocks = [];
+        $server = Application::getInstance()->getContext()->getServer();
+        foreach ($rawMainPageBlocks as $rawMainPageBlock) {
+            $fileInfo = \CFile::GetByID($rawMainPageBlock->getPreviewPicture())->Fetch();
+            $fileDescription = $fileInfo['DESCRIPTION'];
+            $filePath = \CFile::GetPath($rawMainPageBlock->getPreviewPicture());
+            $mainPageBlocks[] = [
+                'id' => $rawMainPageBlock->getId(),
+                'title' => $rawMainPageBlock->getName(),
+                'description' => $rawMainPageBlock->getPreviewText(),
+                'actionText' => $rawMainPageBlock->getButtonText()?->getValue(),
+                'imageUrl' => $server->getHttpHost() . $filePath,
+                'altText' => $fileDescription,
+                'publishDate' => $rawMainPageBlock->getActiveFrom()?->format('Y-m-d'),
+            ];
+        }
+
+        return $mainPageBlocks;
     }
 }

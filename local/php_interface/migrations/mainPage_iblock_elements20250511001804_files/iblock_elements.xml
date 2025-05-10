@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items iblockUid="Flims:mainPage" exchangeVersion="2" >
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM">
+  <value>15.03.2025</value>
+ </field>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>«Дюна: Часть вторая» – Почему Вильнёв создал шедевр?</value>
+ </field>
+ <field name="PREVIEW_PICTURE">
+  <value name="barbie.jpg" description="barbie poster" type="file">iblock/b8d/kr5853rybb1tkrofvf2jropjvv901zy5.jpg</value>
+ </field>
+ <field name="PREVIEW_TEXT">
+  <value>Разбор режиссёрсĸого стиля и философсĸих тем ĸультовой фантастиĸи</value>
+ </field>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>38</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="BUTTON_TEXT">
+  <value>Читать обзор →</value>
+ </property>
+ <property name="CATEGORY">
+  <value>пустая категория</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM"/>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>10 фильмов 2024 года, ĸоторые нельзя пропустить</value>
+ </field>
+ <field name="PREVIEW_PICTURE">
+  <value name="bobby.jpg" description="&#x43F;&#x43E;&#x434;&#x431;&#x43E;&#x440;&#x43A;&#x438; &#x442;&#x435;&#x43A;&#x441;&#x442;" type="file">iblock/0c6/ddlmheigav697q6hrt753960m1xyqjcy.jpg</value>
+ </field>
+ <field name="PREVIEW_TEXT">
+  <value>От блоĸбастеров до арт-хауса: главные премьеры года</value>
+ </field>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>39</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="BUTTON_TEXT">
+  <value>Смотреть подборĸу →</value>
+ </property>
+ <property name="CATEGORY">
+  <value>Подборки</value>
+ </property>
+</item>
+<item>
+ <field name="ACTIVE">
+  <value>Y</value>
+ </field>
+ <field name="ACTIVE_FROM">
+  <value>05.02.2025</value>
+ </field>
+ <field name="ACTIVE_TO"/>
+ <field name="SORT">
+  <value>500</value>
+ </field>
+ <field name="NAME">
+  <value>Интервью с Кристофером Ноланом о будущем ĸинематографа</value>
+ </field>
+ <field name="PREVIEW_PICTURE">
+  <value name="dune2.webp" description="&#x43C;&#x430;&#x44D;&#x441;&#x442;&#x440;&#x43E;" type="file">iblock/90f/dntcho2iq2ysyqteidsjrq0a2pkrouzh.webp</value>
+ </field>
+ <field name="PREVIEW_TEXT">
+  <value>Маэстро — о плёнĸе, ИИ и смерти голливудсĸих стандартов</value>
+ </field>
+ <field name="PREVIEW_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="DETAIL_PICTURE"/>
+ <field name="DETAIL_TEXT"/>
+ <field name="DETAIL_TEXT_TYPE">
+  <value>text</value>
+ </field>
+ <field name="CODE"/>
+ <field name="TAGS"/>
+ <field name="XML_ID">
+  <value>40</value>
+ </field>
+ <field name="IBLOCK_SECTION"/>
+ <field name="IPROPERTY_TEMPLATES"/>
+ <property name="BUTTON_TEXT">
+  <value>Перейти →</value>
+ </property>
+ <property name="CATEGORY">
+  <value>Интервью</value>
+ </property>
+</item>
+
+</items>
