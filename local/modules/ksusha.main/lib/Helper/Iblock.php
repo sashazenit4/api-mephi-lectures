@@ -1,4 +1,5 @@
 <?php
+
 namespace Ksusha\Main\Helper;
 
 use Bitrix\Iblock\Elements\ElementMoviesTable;
@@ -6,10 +7,12 @@ use Bitrix\Main\Application;
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
+use Bitrix\Main\UserTable;
 
 class Iblock
 {
     private const MOVIES_IBLOCK_API_CODE = 'films';
+    private const REVIEWS_IBLOCK_API_CODE = 'reviews';
 
     /**
      * @throws ObjectPropertyException
@@ -29,7 +32,9 @@ class Iblock
         $rawMovies = $className::getList([
             'filter' => $filter,
             'select' => [
-                '*',
+                'ID',
+                'NAME',
+                'PREVIEW_PICTURE',
                 'YEAR',
                 'GENRES',
                 'RATING',
@@ -51,7 +56,7 @@ class Iblock
                 'id' => $rawMovie->getId(),
                 'title' => $rawMovie->getName(),
                 'year' => $rawMovie->getYear()?->getValue(),
-                'image' =>  $server->getHttpHost() . \CFile::GetPath($rawMovie->getPreviewPicture()),
+                'image' => $server->getHttpHost() . \CFile::GetPath($rawMovie->getPreviewPicture()),
                 'genres' => $genres,
                 'rating' => round($rawMovie->getRating()?->getValue(), 2),
             ];
@@ -76,7 +81,10 @@ class Iblock
         $rawMovies = $className::getList([
             'filter' => $filter,
             'select' => [
-                '*',
+                'NAME',
+                'ID',
+                'PREVIEW_PICTURE',
+                'DETAIL_TEXT',
                 'YEAR',
                 'GENRES',
                 'RATING',
@@ -124,5 +132,72 @@ class Iblock
         }
 
         return $movie;
+    }
+
+    /**
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     * @throws ArgumentException
+     */
+    public static function getMovieReviewsById(int $elementId): array
+    {
+        $className = sprintf('\Bitrix\Iblock\Elements\Element%sTable', self::REVIEWS_IBLOCK_API_CODE);
+        if (!class_exists($className)) {
+            return [];
+        }
+        $filter = [
+            'FILM.VALUE' => $elementId,
+        ];
+        $rawReviews = $className::getList([
+            'filter' => $filter,
+            'select' => [
+                'ID',
+                'ACTIVE_FROM',
+                'NAME',
+                'PROS',
+                'CONS',
+                'QUOTE',
+                'RATE',
+                'AUTHOR',
+                'DETAIL_TEXT',
+            ],
+        ])->fetchCollection();
+
+        $reviews = [];
+        foreach ($rawReviews as $rawReview) {
+            $proses = [];
+            foreach ($rawReview->getPros() as $pros) {
+                $proses[] = $pros?->getValue();
+            }
+            $conses = [];
+            foreach ($rawReview->getCons() as $cons) {
+                $conses[] = $cons?->getValue();
+            }
+            $authorInfo = UserTable::getList([
+                'filter' => [
+                    '=ID' => $rawReview->getAuthor()?->getValue() ?? 0,
+                ],
+                'select' => [
+                    'NAME',
+                    'LAST_NAME',
+                    'SECOND_NAME',
+                    'UF_ROLE',
+                ],
+            ])->fetch();
+            $reviews[] = [
+                'id' => $rawReview->getId(),
+                'title' => $rawReview->getName(),
+                'rating' => $rawReview->getRate()?->getValue(),
+                'content' => $rawReview->getDetailText(),
+                'pros' => $proses,
+                'cons' => $conses,
+                'quote' => $rawReview->getQuote()?->getValue(),
+                'date' => $rawReview->getActiveFrom()->format('Y-m-d'),
+                'author' => trim(sprintf('%s %s %s', $authorInfo['LAST_NAME'], $authorInfo['NAME'], $authorInfo['SECOND_NAME'])),
+                'authorRole' => $authorInfo['UF_ROLE'],
+            ];
+        }
+
+        return $reviews;
     }
 }
