@@ -3,6 +3,7 @@ namespace Ksusha\Main\Controller;
 
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Engine\Controller as BitrixContoller;
+use Bitrix\Main\Error;
 use Bitrix\Main\LoaderException;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
@@ -27,6 +28,10 @@ class Movies extends BitrixContoller
                 'postfilters' => [],
             ],
             'getMainPage' => [
+                'prefilters' => [],
+                'postfilters' => [],
+            ],
+            'postMovieReview' => [
                 'prefilters' => [],
                 'postfilters' => [],
             ],
@@ -73,13 +78,29 @@ class Movies extends BitrixContoller
 
     /**
      * @throws LoaderException
-     * @throws ArgumentException
-     * @throws ObjectPropertyException
-     * @throws SystemException
      */
     public function getMainPageAction(): array
     {
         Loader::includeModule('iblock');
-        return Iblock::getMoinPageBlocks();
+        return Iblock::getMainPageBlocks();
+    }
+
+    /**
+     * @throws LoaderException
+     * @throws ArgumentException
+     * @throws SystemException
+     */
+    public function postMovieReviewAction(): array
+    {
+        $authorization = $this->request->getHeader('authorization');
+        $authorization = explode(' ', $authorization);
+        $token = $authorization[1];
+        Loader::includeModule('iblock');
+        $elementId = $this->request->get('movieId');
+        if (!Iblock::postReview($token, $elementId, $this->request->getPostList()->toArray())) {
+            $this->addError(new Error('Не удалось добавить отзыв'));
+        }
+
+        return [];
     }
 }

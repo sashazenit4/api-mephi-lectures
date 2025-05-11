@@ -3,11 +3,12 @@
 namespace Ksusha\Main\Helper;
 
 use Bitrix\Iblock\Elements\ElementMoviesTable;
-use Bitrix\Main\Diag\Debug;
+use Bitrix\Iblock\IblockTable;
 use Bitrix\Main\Application;
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
+use Bitrix\Main\Type\DateTime;
 use Bitrix\Main\UserTable;
 
 class Iblock
@@ -203,7 +204,7 @@ class Iblock
         return $reviews;
     }
 
-    public static function getMoinPageBlocks(): array
+    public static function getMainPageBlocks(): array
     {
         $className = sprintf('\Bitrix\Iblock\Elements\Element%sTable', self::MAIN_PAGE_IBLOCK_API_CODE);
         if (!class_exists($className)) {
@@ -241,5 +242,56 @@ class Iblock
         }
 
         return $mainPageBlocks;
+    }
+
+    /**
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
+    public static function postReview(string $token, int $filmId, array $queryParams): bool
+    {
+        $userId = 0;
+        if ($token !== '') {
+            $userId = (int)UserTable::getList([
+                'filter' => [
+                    'UF_TOKEN' => $token
+                ],
+                'select' => [
+                    'ID'
+                ],
+            ])->fetch()['ID'];
+        }
+        if ($userId <= 0) {
+            return false;
+        }
+
+        $iblockId = IblockTable::getList([
+            'filter' => [
+                'CODE' => self::REVIEWS_IBLOCK_API_CODE,
+            ],
+            'cache' => [
+                'ttl' => 360000,
+            ],
+        ])->fetch()['ID'];
+
+        $fields = [
+            'IBLOCK_ID' => $iblockId,
+            'NAME' => $queryParams['title'],
+            'DETAIL_TEXT',
+            'PREVIEW_TEXT' => $queryParams['content'],
+            'ACTIVE_FROM' => new DateTime(),
+            'PROPERTY_VALUES' => [
+                'PROS' => $queryParams['pros'],
+                'CONS' => $queryParams['cons'],
+                'QUOTE' => $queryParams['quote'],
+                'RATE' => $queryParams['rating'],
+                'AUTHOR' => $userId,
+                'FILM' => $filmId,
+            ],
+        ];
+        $model = new \CIBlockElement;
+        $model->Add($fields);
+        return true;
     }
 }

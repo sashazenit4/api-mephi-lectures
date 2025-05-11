@@ -17,4 +17,5 @@ return function (RoutingConfigurator $routes) {
     $routes->get('/movies/{movieId}', [MoviesController::class, 'getMovie']);
     $routes->get('/movies/{movieId}/reviews', [MoviesController::class, 'getMovieReviews']);
     $routes->get('/mainInfo', [MoviesController::class, 'getMainPage']);
+    $routes->post('/movies/{movieId}/reviews', [MoviesController::class, 'postMovieReview']);
 };
