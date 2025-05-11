@@ -97,6 +97,11 @@ class Movies extends BitrixContoller
         $token = $authorization[1];
         Loader::includeModule('iblock');
         $elementId = $this->request->get('movieId');
+        if (empty($token)) {
+            $this->addError(new Error('Токен не был передан'));
+            return [];
+        }
+
         if (!Iblock::postReview($token, $elementId, $this->request->getPostList()->toArray())) {
             $this->addError(new Error('Не удалось добавить отзыв'));
         }

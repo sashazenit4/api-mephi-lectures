@@ -7,10 +7,11 @@ use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\Security\Random;
 use Bitrix\Main\SystemException;
 use Bitrix\Main\UserTable;
+use Bitrix\Main\Diag\Debug;
 
 class Main
 {
-    private const TOKEN_LENGTH = 12;
+    private const TOKEN_LENGTH = 24;
 
     /**
      * @throws ObjectPropertyException
@@ -20,11 +21,12 @@ class Main
     public static function onAfterUserLoginHandler(array $params): EventResult
     {
         $userId = $params['USER_ID'];
-        if (UserTable::GetByID($userId)->Fetch()['UF_TOKEN'] === '') {
+        if (is_null(UserTable::GetByID($userId)->Fetch()['UF_TOKEN'])) {
             $user = new \CUser;
-            $user->Update($userId, [
-                'UF_TOKEN' => Random::getString(self::TOKEN_LENGTH),
+            $res = $user->Update($userId, [
+                'UF_TOKEN' => Random::getString(self::TOKEN_LENGTH, true),
             ]);
+            Debug::dumpToFile($res);
         }
 
         return new EventResult(EventResult::SUCCESS);
@@ -36,7 +38,7 @@ class Main
         if ($logoutSuccess) {
             $user = new \CUser;
             $user->Update($userId, [
-                'UF_TOKEN' => '',
+                'UF_TOKEN' => null,
             ]);
         }
 
